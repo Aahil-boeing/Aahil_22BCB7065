@@ -1,0 +1,30 @@
+show databases;
+use vit;
+show tables;
+select * from csbs;
+START TRANSACTION;
+
+insert into csbs values(1,'KB',99,9.0,'AP');
+savepoint a1;
+insert into csbs values(2,'LB',99,9.2,'AP');
+savepoint b1;
+insert into csbs values(3,'MB',99,9.3,'AP');
+insert into csbs values(4,'NB',99,9.4,'AP');
+insert into csbs values(5,'OB',99,9.5,'AP');
+insert into csbs values(6,'PB',99,9.6,'AP');
+delete from csbs where s_id=1;
+rollback to a1;
+
+select s_name  from csbs;
+select s_name, s_marks from csbs;
+select s_name as student_name from csbs;
+desc csbs;
+
+
+select s_name,s_marks from csbs where s_cgpa>=9.0; 
+select s_id,s_marks,s_name from csbs where s_marks>=90;
+select s_name,s_marks,s_campus from csbs where s_campus='CHENNAI'; 
+SELECT * from csbs where s_marks>=90 or s_cgpa>=9.0;
+SELECT * from csbs where s_marks>=90 and s_marks<=95 and (s_id>=9 or s_name='ib');
+SELECT * from csbs where s_marks>=90 and s_id mod 2 = 0;
+SELECT * from csbs where s_marks>=90 and s_id % 2 = 1;
